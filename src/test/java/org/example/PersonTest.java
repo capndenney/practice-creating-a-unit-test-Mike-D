@@ -27,8 +27,13 @@ public class PersonTest {
     @Test
     public void testSetAge() {
         Person mike = new Person("Mike", 31, "1600 Penn Ave");
-        mike.setAge(Integer.MAX_VALUE);
+        int one = 1;
+        int maxInt = Integer.MAX_VALUE;
+        mike.setAge(maxInt);
         int result = mike.getAge();
-        assertEquals(Integer.MAX_VALUE, result);
+        assertEquals(maxInt, result);
+        assertThrows(ArithmeticException.class, () -> {
+            mike.setAge(Math.addExact(maxInt, one));
+        });
     }
 }
